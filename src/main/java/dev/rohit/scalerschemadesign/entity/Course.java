@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -31,6 +32,6 @@ public class Course{
   @Column(name="description")
   private String description;
 
-  @OneToOne(mappedBy = "course")
-  private Student student;
+  @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "course")
+  private Set<StudentCourse>  students;
 }

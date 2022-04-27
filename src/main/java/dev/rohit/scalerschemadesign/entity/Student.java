@@ -10,13 +10,14 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="students")
+@Table(name = "students")
 public class Student{
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +25,13 @@ public class Student{
   private Long id;
 
 
-  @Column(name="name")
+  @Column(name = "name")
   private String name;
 
-  @Column(name="email",nullable = false)
+  @Column(name = "email", nullable = false)
   private String email;
 
-  @Column(name="phone_number")
+  @Column(name = "phone_number")
   private String phoneNumber;
 
   @CreationTimestamp
@@ -42,8 +43,7 @@ public class Student{
   @LastModifiedBy
   private String modifiedBy;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name="course_id",referencedColumnName = "id")
-  private Course course;
+  @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+  private Set<StudentCourse> courses;
 
 }
