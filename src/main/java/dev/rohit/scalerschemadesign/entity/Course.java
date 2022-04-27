@@ -34,4 +34,10 @@ public class Course{
 
   @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "course")
   private Set<StudentCourse>  students;
+
+  @ManyToMany(cascade = CascadeType.REMOVE,mappedBy = "courses")
+  private Set<Exam> exams;
+
+  @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "course")
+  private Set<StudentCourseExam> studentCourseExams;
 }
